@@ -1,0 +1,101 @@
+:root {
+    --bright-white: #FDFDFF;
+    --bright-blue: #51e2f5;
+    --blue-green: #9df9ef;
+    --dusty-white: #edf7f6;
+    --pink-sand: #ffa8B6;
+    --dark-sand: #a28089;
+    --grey: #62929E;
+    --header: #393D3F;
+
+    --card-shadow: rgba(0, 0, 0, 0.20) 0px 2px 5px;
+    --radius-l: 10px;
+    --radius-s: 5px;
+
+    --ff: 'Reem Kufi Ink', sans-serif;
+    
+    --flarge: 100px;
+    --fnormal: 20px;
+    --fsmall: 16px;
+
+    --bold: 900;
+    --medium: 700;
+    --normal: 500;
+
+    --site-width: 1500px;
+
+    --board-size: 470px;
+    --field-size: 150px;
+
+    --spacing-l: 40px;
+    --spacing-m: calc(var(--spacing-l) * 0.5); /*20px*/
+    --spacing-s: calc(var(--spacing-m) * 0.5); /*10px*/
+    --spacing-xs: calc(var(--spacing-s) * 0.5); /*5px*/
+}
+
+body {
+    margin: 0;
+    background-color: var(--dusty-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--ff);
+    gap: var(--spacing-l);
+}
+
+header {
+    background-color: var(--header);
+    font-size: var(--fnormal);
+    color: var(--dusty-white);
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#main-container {
+    width: var(--site-width);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#game-board {
+    width: var(--board-size);
+    height: var(--board-size);
+    background-color: var(--header);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+.field {
+    width: var(--field-size);
+    height: var(--field-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bright-blue);
+    font-size: var(--flarge);
+}
+
+.button {
+    /*Button reset*/
+    border: medium none;
+    list-style: none outside none;
+    margin: 0;
+    border-spacing: 0;
+    text-indent: 0;
+    text-align: left;
+    text-decoration: none;
+
+    /*General button styling*/
+    border-radius: var(--radius-s);
+    font: inherit;
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
