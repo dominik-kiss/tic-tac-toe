@@ -47,9 +47,34 @@ const displayController = (function() {
     }
 
     fieldDivs.forEach(button => button.addEventListener("click", function() {
+        if (this.classList.contains("hovered")) {
+            this.classList.remove("hovered");
+        }
         gameController.playRound(parseInt(this.dataset.index));
         renderGameboard();
     }));
+
+    // Event listeners for hovering over fields, to show the player what they are about to do
+    
+    fieldDivs.forEach(field => field.addEventListener("mouseenter", transition));
+    fieldDivs.forEach(field => field.addEventListener("mouseleave", transition));
+    
+    // Change the hovered field's color and add a low opacity version of the current player's sign
+    function transition(e) {
+        if (gameController.isGameOver()) {
+            return;
+        }
+        if (this.innerHTML == "") {
+            this.classList.toggle("hovered");
+            this.innerHTML = gameController.getCurrentPlayer().sign;
+            return;
+        }
+        if (this.innerHTML != "" && this.classList.contains("hovered")) {
+            this.classList.toggle("hovered");
+            this.innerHTML = "";
+            return;
+        }
+    }
 
     return {renderGameboard};
 })();
@@ -66,7 +91,7 @@ const gameController = (function() {
 
     function playRound(index) {
         if (gameBoard.isValidMove(index) && !gameOver) {
-            currentPlayer = round % 2 == 1 ? playerOne : playerTwo;
+            currentPlayer = getCurrentPlayer();
             gameBoard.setField(currentPlayer.sign, index);
             
             // Check if this was the winning move
@@ -102,12 +127,20 @@ const gameController = (function() {
         return winOptions.filter(option => option.every((value) => gameBoard.getField(value) == sign)).length > 0;
     }
 
+    function getCurrentPlayer() {
+        return round % 2 == 1 ? playerOne : playerTwo;
+    }
+
+    function isGameOver() {
+        return gameOver;
+    }
+
     function reset() {
         round = 1;
         gameOver = false;
     }
 
-    return {playRound, checkWinner, reset}
+    return {playRound, checkWinner, getCurrentPlayer, isGameOver, reset}
 
 })();
 

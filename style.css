@@ -15,7 +15,7 @@
     --ff: 'Reem Kufi Ink', sans-serif;
     
     --flarge: 100px;
-    --fnormal: 20px;
+    --fnormal: 60px;
     --fsmall: 16px;
 
     --bold: 900;
@@ -98,4 +98,9 @@ header {
     width: 100px;
     text-align: center;
     cursor: pointer;
+}
+
+.hovered {
+    background-color: var(--bright-white);
+    font-size: var(--fnormal);
 }
