@@ -20,9 +20,15 @@
     
     <div id="main-container">
         <div id="message-box">
-            <div class="player-name current" id="player-one">Player 1</div>
+            <div class="player-name current" id="player-one">
+                <input type="text" class="player-input hidden" id="player1-input">
+                <p class="name-text">Player 1</p>
+            </div>
             <div id="message"></div>
-            <div class="player-name" id="player-two">Player 2</div>
+            <div class="player-name" id="player-two">
+                <input type="text" class="player-input hidden" id="player2-input">
+                <p class="name-text">Player 2</p>
+            </div>
         </div>
         <div id="game-board">
             <div class="field" data-index="0"></div>

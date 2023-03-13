@@ -38,6 +38,10 @@
     --spacing-xs: calc(var(--spacing-s) * 0.5); /*5px*/
 }
 
+p {
+    margin: 0;
+}
+
 /* Default elements */
 
 body {
@@ -68,6 +72,7 @@ header {
 /* Message box */
 
 #message-box {
+    position: relative;
     display: flex;
     flex-direction: row;
     width: var(--board-size);
@@ -85,6 +90,24 @@ header {
 .current {
     border-color: var(--grey);
     background-color: var(--grey);
+}
+
+.player-input {
+    position: absolute;
+    background-color: white;
+    top: 10px;
+    width: 72px;
+    border: none;
+    height: 22px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+input[type=text]:focus {
+    background-color: lightblue;
+    border: 1px solid #555;
 }
 
 #message {

@@ -56,19 +56,36 @@ const displayController = (function() {
             playerNames.forEach(playerName => playerName.classList.remove("current"));
             playerNames[0].classList.add("current");
         }
-
     }
-
 
     fieldDivs.forEach(button => button.addEventListener("click", function() {
         if (this.classList.contains("hovered")) {
             this.classList.remove("hovered");
         }
         gameController.playRound(parseInt(this.dataset.index));
-        if(!gameController.isGameOver()) {
+        if (!gameController.isGameOver()) {
             renderGameboard();
         }
     }));
+
+    playerNames.forEach(playerName => playerName.addEventListener("dblclick", function() {
+        this.firstElementChild.classList.toggle("hidden");
+        that = this;
+        playerName.addEventListener("keydown", processInput);
+    }));
+
+    function processInput(event) {
+        if (event.key == "Enter") {
+            if (that.firstElementChild.value != "") {
+                gameController.setPlayerName(that.id, that.firstElementChild.value);
+                displayController.updatePlayerNames();
+            }
+            that.firstElementChild.classList.toggle("hidden");
+            document.removeEventListener("keydown", processInput);
+            document.removeEventListener("keydown", processInput);
+        }
+    }
+
 
     // Event listeners for hovering over fields, to show the player what they are about to do
     
@@ -108,6 +125,10 @@ const displayController = (function() {
         messageDisplay.innerHTML = `${gameController.getCurrentPlayer().name} wins!`;
     }
 
+    function updatePlayerNames() {
+        playerNames.forEach((playerName, index) => {playerName.querySelector(".name-text").innerHTML = gameController.getPlayerName(index)})
+    }
+
     // Cache reset button and add event listener
 
     const restartButton = document.querySelector("#restart-button");
@@ -120,7 +141,7 @@ const displayController = (function() {
         updateMessage("reset");
     }
 
-    return {renderGameboard, updateMessage};
+    return {renderGameboard, updateMessage, updatePlayerNames};
 })();
 
 
@@ -129,6 +150,22 @@ const displayController = (function() {
 const gameController = (function() {
     const playerOne = Player("Player 1", "X");
     const playerTwo = Player("Player 2", "O");
+
+    function setPlayerName(player, newName) {
+        if (player == "player-one") {
+            playerOne.name = newName;
+            return;
+        }
+        if (player == "player-two") {
+            playerTwo.name = newName;
+            return;
+        }
+    }
+
+    function getPlayerName(player) {
+        if (player == 0) return playerOne.name;
+        if (player == 1) return playerTwo.name;
+    }
 
     let round = 1;
     let gameOver = false;
@@ -188,7 +225,7 @@ const gameController = (function() {
         gameOver = false;
     }
 
-    return {playRound, checkWinner, getCurrentPlayer, isGameOver, getRound, reset}
+    return {setPlayerName, getPlayerName, playRound, checkWinner, getCurrentPlayer, isGameOver, getRound, reset}
 
 })();
 
