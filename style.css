@@ -72,6 +72,7 @@ header {
     flex-direction: row;
     width: var(--board-size);
     justify-content: space-between;
+    align-content: center;
     margin-bottom: 20px;
     margin-top: 20px;
 }
@@ -84,6 +85,11 @@ header {
 .current {
     border-color: var(--grey);
     background-color: var(--grey);
+}
+
+#message {
+    font-size: var(--fsmall);
+    font-weight: var(--medium);
 }
 
 /* Gameboard */

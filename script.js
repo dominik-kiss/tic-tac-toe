@@ -92,6 +92,22 @@ const displayController = (function() {
         }
     }
 
+    // Cache message box and define function to announce winner and other messages
+
+    const messageDisplay = document.querySelector("#message");
+
+    function updateMessage(type) {
+        if(type == "draw") {
+            messageDisplay.innerHTML = "It's a tie!";
+            return;
+        }
+        if(type == "reset") {
+            messageDisplay.innerHTML = "";
+            return;
+        }
+        messageDisplay.innerHTML = `${gameController.getCurrentPlayer().name} wins!`;
+    }
+
     // Cache reset button and add event listener
 
     const restartButton = document.querySelector("#restart-button");
@@ -101,9 +117,10 @@ const displayController = (function() {
         gameBoard.resetBoard();
         gameController.reset();
         renderGameboard();
+        updateMessage("reset");
     }
 
-    return {renderGameboard};
+    return {renderGameboard, updateMessage};
 })();
 
 
@@ -123,13 +140,13 @@ const gameController = (function() {
             
             // Check if this was the winning move
             if (checkWinner(currentPlayer.sign)) {
-                console.log(`${currentPlayer.name} wins!`);
                 gameOver = true;
+                displayController.updateMessage(currentPlayer.name);
                 return;
             }
             // Check if the current round is the last (9th) round
             if (round == 9) {
-                console.log("Draw");
+                displayController.updateMessage("draw");
                 gameOver = true;
                 return;
             }
