@@ -16,11 +16,12 @@
     --radius-l: 10px;
     --radius-s: 5px;
 
-    --ff: 'Reem Kufi Ink', sans-serif;
+    --ff-body: "Titillium Web";
+    --ff-board: "Fredoka One";
     
     --flarge: 100px;
     --fnormal: 60px;
-    --fsmall: 16px;
+    --fsmall: 20px;
 
     --bold: 900;
     --medium: 700;
@@ -47,6 +48,7 @@ body {
     align-items: center;
     font-family: var(--ff);
     gap: var(--spacing-l);
+    font-family: var(--ff-body);
 }
 
 header {
@@ -58,6 +60,11 @@ header {
     justify-content: center;
 }
 
+#header-container {
+    font-weight: 700;
+    color: var(--bright-blue);
+}
+
 /* Message box */
 
 #message-box {
@@ -66,6 +73,7 @@ header {
     width: var(--board-size);
     justify-content: space-between;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .player-name {
@@ -81,13 +89,17 @@ header {
 /* Gameboard */
 
 #main-container {
-    width: var(--site-width);
+    border-radius: 20px;
+    width: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: -1px 7px 22px -6px var(--grey);
 }
+/* box-shadow: h-offset v-offset blur spread color |inset|initial|inherit;*/
 
 #game-board {
+    font-family: var(--ff-board);
     width: var(--board-size);
     height: var(--board-size);
     background-color: var(--header);
@@ -135,4 +147,42 @@ header {
     width: 100px;
     text-align: center;
     cursor: pointer;
+}
+
+#restart-button {
+    margin: 20px;
+    border-radius: 10px;
+    border-color: var(--grey);
+    background-color: var(--grey);
+    font-size: var(--fsmall);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Footer */
+
+#footer {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.fa-github {
+    color: black;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fa-github:hover {
+    transform: rotate(360deg) scale(1.2);
+}
+
+.fa-rotate-left {
+    color: black;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fa-rotate-left:hover {
+    transform: rotate(-360deg) scale(1.2);
 }

@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe</title>
+    <script src="https://kit.fontawesome.com/a7d41dbecd.js" crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Fredoka One' rel='stylesheet'>
+    <title>Tic Tac Toe</title>
 </head>
 <body>
     <header>
         <div id="header-container">
-
+            Tic Tac Toe
         </div>
     </header>
     
@@ -32,8 +35,21 @@
             <div class="field" data-index="8"></div>
         </div>
         <div class="button-container">
-            <div class="button" id="restart-button">Restart</div>
+            <div class="button" id="restart-button">Restart <i class="fa-solid fa-rotate-left"></i></div>
         </div>
+    </div>
+
+    <div id="footer">
+        <div>
+            Copyright ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+            dominik-kiss
+        </div>
+        <a href="https://github.com/dominik-kiss" target="_blank">
+            <i class="fab fa-github"></i>
+        </a>
     </div>
 </body>
 </html>
