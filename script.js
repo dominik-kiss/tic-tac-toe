@@ -32,6 +32,7 @@ const gameBoard = (function() {
     return {setField, getField, isValidMove, resetBoard};
 })();
 
+
 // Module for the displayController
 
 const displayController = (function() {
@@ -47,8 +48,14 @@ const displayController = (function() {
         for (i in fieldDivs) {
             fieldDivs[i].innerHTML = gameBoard.getField(i);
         }
-        // Switch the highlight of the player's name to show who's turn it is
-        playerNames.forEach(playerName => playerName.classList.toggle("current"));
+        // If it's not a "reset", switch the highlight of the player's name to show who's turn it is
+        if(gameController.getRound() != 1) {
+            playerNames.forEach(playerName => playerName.classList.toggle("current"));
+        }
+        else {
+            playerNames.forEach(playerName => playerName.classList.remove("current"));
+            playerNames[0].classList.add("current");
+        }
 
     }
 
@@ -83,6 +90,17 @@ const displayController = (function() {
             this.innerHTML = "";
             return;
         }
+    }
+
+    // Cache reset button and add event listener
+
+    const restartButton = document.querySelector("#restart-button");
+    restartButton.addEventListener("click", reset);
+
+    function reset() {
+        gameBoard.resetBoard();
+        gameController.reset();
+        renderGameboard();
     }
 
     return {renderGameboard};
@@ -144,12 +162,16 @@ const gameController = (function() {
         return gameOver;
     }
 
+    function getRound() {
+        return round;
+    }
+
     function reset() {
         round = 1;
         gameOver = false;
     }
 
-    return {playRound, checkWinner, getCurrentPlayer, isGameOver, reset}
+    return {playRound, checkWinner, getCurrentPlayer, isGameOver, getRound, reset}
 
 })();
 
