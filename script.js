@@ -49,7 +49,7 @@ const displayController = (function() {
         }
         // Switch the highlight of the player's name to show who's turn it is
         playerNames.forEach(playerName => playerName.classList.toggle("current"));
-        
+
     }
 
 
@@ -58,7 +58,9 @@ const displayController = (function() {
             this.classList.remove("hovered");
         }
         gameController.playRound(parseInt(this.dataset.index));
-        renderGameboard();
+        if(!gameController.isGameOver()) {
+            renderGameboard();
+        }
     }));
 
     // Event listeners for hovering over fields, to show the player what they are about to do
