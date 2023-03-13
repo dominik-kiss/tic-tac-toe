@@ -1,3 +1,5 @@
+/* Variables */
+
 :root {
     --bright-white: #FDFDFF;
     --bright-blue: #51e2f5;
@@ -35,6 +37,8 @@
     --spacing-xs: calc(var(--spacing-s) * 0.5); /*5px*/
 }
 
+/* Default elements */
+
 body {
     margin: 0;
     background-color: var(--dusty-white);
@@ -53,6 +57,28 @@ header {
     display: flex;
     justify-content: center;
 }
+
+/* Message box */
+
+#message-box {
+    display: flex;
+    flex-direction: row;
+    width: var(--board-size);
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.player-name {
+    border: 10px solid var(--player-highlight);
+    border-radius: 10px;
+}
+
+.current {
+    border-color: var(--grey);
+    background-color: var(--grey);
+}
+
+/* Gameboard */
 
 #main-container {
     width: var(--site-width);
@@ -85,23 +111,12 @@ header {
     border-radius: 10px;
 }
 
-#message-box {
-    display: flex;
-    flex-direction: row;
-    width: var(--board-size);
-    justify-content: space-between;
-    margin-bottom: 20px;
+.hovered {
+    background-color: var(--bright-white);
+    font-size: var(--fnormal);
 }
 
-.player-name {
-    border: 10px solid var(--player-highlight);
-    border-radius: 10px;
-}
-
-.current {
-    border-color: var(--grey);
-    background-color: var(--grey);
-}
+/* Buttons */
 
 .button {
     /*Button reset*/
@@ -120,9 +135,4 @@ header {
     width: 100px;
     text-align: center;
     cursor: pointer;
-}
-
-.hovered {
-    background-color: var(--bright-white);
-    font-size: var(--fnormal);
 }
