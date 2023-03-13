@@ -36,15 +36,22 @@ const gameBoard = (function() {
 
 const displayController = (function() {
 
-    // Cache #game-board container div and the inner field divs for rendering fields from board Array
+    // Cache the field divs for rendering fields from board Array
+    // Cache the message board's divs containing the player names
 
     const fieldDivs = document.querySelectorAll(".field");
+    const playerNames = document.querySelectorAll(".player-name");
 
     function renderGameboard() {
+        // Update the "field" div elements to the corresponding value from the board array
         for (i in fieldDivs) {
             fieldDivs[i].innerHTML = gameBoard.getField(i);
         }
+        // Switch the highlight of the player's name to show who's turn it is
+        playerNames.forEach(playerName => playerName.classList.toggle("current"));
+        
     }
+
 
     fieldDivs.forEach(button => button.addEventListener("click", function() {
         if (this.classList.contains("hovered")) {

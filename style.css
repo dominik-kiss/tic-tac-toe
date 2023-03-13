@@ -7,6 +7,8 @@
     --dark-sand: #a28089;
     --grey: #62929E;
     --header: #393D3F;
+    --player-highlight: #edf7f6;
+    --field-color: #51e2f5;
 
     --card-shadow: rgba(0, 0, 0, 0.20) 0px 2px 5px;
     --radius-l: 10px;
@@ -24,7 +26,7 @@
 
     --site-width: 1500px;
 
-    --board-size: 470px;
+    --board-size: 465px;
     --field-size: 150px;
 
     --spacing-l: 40px;
@@ -46,7 +48,6 @@ body {
 header {
     background-color: var(--header);
     font-size: var(--fnormal);
-    color: var(--dusty-white);
     height: 100px;
     width: 100%;
     display: flex;
@@ -67,8 +68,10 @@ header {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: space-around;
+    justify-content: space-between;
+    align-content: space-between;
+    border-radius: 10px;
+    border: 5px solid var(--header);
 }
 
 .field {
@@ -77,8 +80,27 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--bright-blue);
+    background-color: var(--field-color);
     font-size: var(--flarge);
+    border-radius: 10px;
+}
+
+#message-box {
+    display: flex;
+    flex-direction: row;
+    width: var(--board-size);
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.player-name {
+    border: 10px solid var(--player-highlight);
+    border-radius: 10px;
+}
+
+.current {
+    border-color: var(--grey);
+    background-color: var(--grey);
 }
 
 .button {
