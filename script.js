@@ -58,6 +58,8 @@ const displayController = (function() {
         }
     }
 
+    // Handle input from a click on one of the fields
+
     fieldDivs.forEach(button => button.addEventListener("click", function() {
         if (this.classList.contains("hovered")) {
             this.classList.remove("hovered");
@@ -67,6 +69,8 @@ const displayController = (function() {
             renderGameboard();
         }
     }));
+
+    // Handle doubleclick on player name elements
 
     playerNames.forEach(playerName => playerName.addEventListener("dblclick", function() {
         this.firstElementChild.classList.toggle("hidden");
@@ -97,16 +101,20 @@ const displayController = (function() {
         if (gameController.isGameOver()) {
             return;
         }
+        // If an empty field is hovered, it should display the effect
         if (this.innerHTML == "") {
             this.classList.toggle("hovered");
             this.innerHTML = gameController.getCurrentPlayer().sign;
             return;
         }
+        // If the field is "not empty, and/but has the hovered class", that means it was just populated
+        // If the field is now populated, remove the effect
         if (this.innerHTML != "" && this.classList.contains("hovered")) {
             this.classList.toggle("hovered");
             this.innerHTML = "";
             return;
         }
+        // Populated fields will never have the "hovered" class, so they won't receive the effect
     }
 
     // Cache message box and define function to announce winner and other messages
@@ -114,15 +122,17 @@ const displayController = (function() {
     const messageDisplay = document.querySelector("#message");
 
     function updateMessage(type) {
-        if(type == "draw") {
-            messageDisplay.innerHTML = "It's a tie!";
-            return;
+        switch (type) {
+            case "draw":
+                messageDisplay.innerHTML = "It's a tie!";
+                break;
+            case "reset":
+                messageDisplay.innerHTML = "";
+                break;
+            case gameController.getCurrentPlayer().name:
+                messageDisplay.innerHTML = `${type} wins!`;
+                break;
         }
-        if(type == "reset") {
-            messageDisplay.innerHTML = "";
-            return;
-        }
-        messageDisplay.innerHTML = `${gameController.getCurrentPlayer().name} wins!`;
     }
 
     function updatePlayerNames() {
